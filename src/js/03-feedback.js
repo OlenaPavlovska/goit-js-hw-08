@@ -1,22 +1,23 @@
-import throttle from "lodash.throttle";
+import throttle from 'lodash.throttle';
 
 const form = document.querySelector('.feedback-form');
 const emailInput = form.querySelector('input[name="email"]');
 const messageInput = form.querySelector('textarea[name="message"]');
+
 const STORAGE_KEY = 'feedback-form-state';
 
-function saveFormData(){
-    const formData = {
-        email: emailInput.ariaValueMax,
-        message:messageInput.value
-    };
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(formData))
+function saveFormData() {
+  const formData = {
+    email: emailInput.value,
+    message: messageInput.value
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function populateFormFields() {
-    const savedFormData = localStorage.getItem(STORAGE_KEY);
-    if (savedFormData) {
-         const { email, message } = JSON.parse(savedFormData);
+  const savedFormData = localStorage.getItem(STORAGE_KEY);
+  if (savedFormData) {
+    const { email, message } = JSON.parse(savedFormData);
     emailInput.value = email;
     messageInput.value = message;
   } else {
@@ -43,7 +44,3 @@ messageInput.addEventListener('input', throttledSaveFormData);
 form.addEventListener('submit', onSubmit);
 
 populateFormFields();
-    
-
-
-
