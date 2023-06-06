@@ -19,3 +19,4 @@ function setTime() {
         player.setCurrentTime(getStorage)
     }
 }
+
